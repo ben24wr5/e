@@ -10,10 +10,29 @@ struct MapsApp: View {
     @State private var results: [MKMapItem] = []
     @State private var selected: MKMapItem?
     @State private var route: MKRoute?
-    @State private var transport: MKDirectionsTransportType = .automobile
+    @State private var transport: TravelMode = .car
     @State private var style: MapStyleChoice = .standard
     @State private var isSearching = false
     @State private var message: String?
+
+    enum TravelMode: String, CaseIterable, Identifiable {
+        case car, walk, transit
+        var id: String { rawValue }
+        var symbol: String {
+            switch self {
+            case .car: return "car.fill"
+            case .walk: return "figure.walk"
+            case .transit: return "tram.fill"
+            }
+        }
+        var type: MKDirectionsTransportType {
+            switch self {
+            case .car: return .automobile
+            case .walk: return .walking
+            case .transit: return .transit
+            }
+        }
+    }
 
     enum MapStyleChoice: String, CaseIterable, Identifiable {
         case standard = "Map", satellite = "Satellite", hybrid = "Hybrid"
@@ -111,9 +130,9 @@ struct MapsApp: View {
                 Divider().overlay(Theme.cardLine)
 
                 Picker("Travel by", selection: $transport) {
-                    Image(systemName: "car.fill").tag(MKDirectionsTransportType.automobile)
-                    Image(systemName: "figure.walk").tag(MKDirectionsTransportType.walking)
-                    Image(systemName: "tram.fill").tag(MKDirectionsTransportType.transit)
+                    ForEach(TravelMode.allCases) { mode in
+                        Image(systemName: mode.symbol).tag(mode)
+                    }
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
@@ -228,7 +247,7 @@ struct MapsApp: View {
         let request = MKDirections.Request()
         request.source = MKMapItem.forCurrentLocation()
         request.destination = item
-        request.transportType = transport
+        request.transportType = transport.type
         do {
             let response = try await MKDirections(request: request).calculate()
             guard let first = response.routes.first else { return }

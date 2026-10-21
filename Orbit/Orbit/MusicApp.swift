@@ -112,7 +112,7 @@ final class MusicPlayer: ObservableObject {
         let asset = AVURLAsset(url: destination)
         let metadata = (try? await asset.load(.commonMetadata)) ?? []
         func value(_ id: AVMetadataIdentifier) async -> String? {
-            guard let item = AVMetadataItem.metadata(from: metadata, filteredByIdentifier: id).first else { return nil }
+            guard let item = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: id).first else { return nil }
             return try? await item.load(.stringValue)
         }
         let duration = (try? await asset.load(.duration)).map { $0.seconds } ?? 0
@@ -194,7 +194,7 @@ final class MusicPlayer: ObservableObject {
         Task {
             let asset = AVURLAsset(url: track.url)
             let metadata = (try? await asset.load(.commonMetadata)) ?? []
-            guard let item = AVMetadataItem.metadata(from: metadata, filteredByIdentifier: .commonIdentifierArtwork).first,
+            guard let item = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierArtwork).first,
                   let data = try? await item.load(.dataValue),
                   let image = NSImage(data: data),
                   self.current?.id == track.id else { return }
