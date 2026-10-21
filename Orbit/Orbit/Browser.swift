@@ -75,7 +75,13 @@ final class BrowserModel: NSObject, ObservableObject {
 
     func back() { webView.goBack() }
     func forward() { webView.goForward() }
-    func reloadOrStop() { isLoading ? webView.stopLoading() : webView.reload() }
+    func reloadOrStop() {
+        if isLoading {
+            webView.stopLoading()
+        } else {
+            webView.reload()
+        }
+    }
     func home() { webView.load(URLRequest(url: Defaults.homePage)) }
 
     func openInDefaultBrowser() {

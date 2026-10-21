@@ -24,11 +24,13 @@ final class AppCatalog: ObservableObject {
         isLoading = true
         Task.detached(priority: .utility) { [weak self] in
             let found = AppCatalog.scan()
-            await MainActor.run {
-                self?.apps = found
-                self?.isLoading = false
-            }
+            await self?.apply(found)
         }
+    }
+
+    private func apply(_ found: [AppInfo]) {
+        apps = found
+        isLoading = false
     }
 
     func search(_ query: String, limit: Int = 7) -> [AppInfo] {
