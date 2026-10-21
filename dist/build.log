@@ -1,0 +1,400 @@
+Xcode 16.4
+Build version 16F6
+Command line invocation:
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/xcodebuild -project Orbit/Orbit.xcodeproj -scheme Orbit -configuration Release -derivedDataPath build "ARCHS=arm64 x86_64" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY=- build
+
+Build settings from command line:
+    ARCHS = arm64 x86_64
+    CODE_SIGN_IDENTITY = -
+    ONLY_ACTIVE_ARCH = NO
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:c9a102bd48ee3ef9ff982efb76935085fbf7fbe7, name:My Mac }
+{ platform:macOS, arch:x86_64, id:c9a102bd48ee3ef9ff982efb76935085fbf7fbe7, name:My Mac }
+{ platform:macOS, name:Any Mac }
+note: Using codesigning identity override: -
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'Orbit' in project 'Orbit' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: a14d9c4f211ed368e09862def75f043a
+Build description path: /Users/runner/work/e/e/build/Build/Intermediates.noindex/XCBuildData/a14d9c4f211ed368e09862def75f043a.xcbuilddata
+CreateBuildDirectory /Users/runner/work/e/e/build/Build/Products
+    cd /Users/runner/work/e/e/Orbit/Orbit.xcodeproj
+    builtin-create-build-directory /Users/runner/work/e/e/build/Build/Products
+
+CreateBuildDirectory /Users/runner/work/e/e/build/Build/Intermediates.noindex
+    cd /Users/runner/work/e/e/Orbit/Orbit.xcodeproj
+    builtin-create-build-directory /Users/runner/work/e/e/build/Build/Intermediates.noindex
+
+ClangStatCache /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache
+    cd /Users/runner/work/e/e/Orbit/Orbit.xcodeproj
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -o /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit-b500baddc7d21c4c818dea9f26c224b5-VFS/all-product-headers.yaml
+    cd /Users/runner/work/e/e/Orbit/Orbit.xcodeproj
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit-b500baddc7d21c4c818dea9f26c224b5-VFS/all-product-headers.yaml
+
+CreateBuildDirectory /Users/runner/work/e/e/build/Build/Products/Release
+    cd /Users/runner/work/e/e/Orbit/Orbit.xcodeproj
+    builtin-create-build-directory /Users/runner/work/e/e/build/Build/Products/Release
+
+CreateBuildDirectory /Users/runner/work/e/e/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release
+    cd /Users/runner/work/e/e/Orbit/Orbit.xcodeproj
+    builtin-create-build-directory /Users/runner/work/e/e/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.DependencyStaticMetadataFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.hmap (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.hmap
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.DependencyMetadataFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-non-framework-target-headers.hmap (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_const_extract_protocols.json (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftConstValuesFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.LinkFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-OutputFileMap.json (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_const_extract_protocols.json (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftConstValuesFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.LinkFileList (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-OutputFileMap.json (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/Entitlements.plist (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    write-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/Entitlements.plist
+
+MkDir /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /bin/mkdir -p /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources
+
+MkDir /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /bin/mkdir -p /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS
+
+MkDir /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /bin/mkdir -p /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents
+
+MkDir /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /bin/mkdir -p /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app
+
+ProcessProductPackaging "" /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent
+
+ProcessProductPackagingDER /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent.der (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /usr/bin/derq query -f xml -i /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent -o /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent.der --raw
+
+MkDir /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/unthinned (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /bin/mkdir -p /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/unthinned
+
+MkDir /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/thinned (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /bin/mkdir -p /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/thinned
+
+GenerateAssetSymbols /Users/runner/work/e/e/Orbit/Orbit/Assets.xcassets (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool /Users/runner/work/e/e/Orbit/Orbit/Assets.xcassets --compile /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_dependencies --output-partial-info-plist /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 14.0 --platform macosx --bundle-identifier com.example.orbit --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+CompileAssetCatalogVariant thinned /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources /Users/runner/work/e/e/Orbit/Orbit/Assets.xcassets (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool /Users/runner/work/e/e/Orbit/Orbit/Assets.xcassets --compile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 14.0 --platform macosx
+2026-10-21 14:46:37.525 ibtoold[1188:6466] NSFileCoordinator is doing nothing.
+/* com.apple.actool.compilation-results */
+/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist_thinned
+/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/thinned/AppIcon.icns
+/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/thinned/Assets.car
+
+
+LinkAssetCatalog /Users/runner/work/e/e/Orbit/Orbit/Assets.xcassets (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-linkAssetCatalog --thinned /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/thinned --thinned-dependencies /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist_unthinned --output /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources --plist-output /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources/Assets.car (in target 'Orbit' from project 'Orbit')
+note: Emplaced /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources/AppIcon.icns (in target 'Orbit' from project 'Orbit')
+
+ProcessInfoPlistFile /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Info.plist /Users/runner/work/e/e/Orbit/Orbit/Info.plist (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-infoPlistUtility /Users/runner/work/e/e/Orbit/Orbit/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/PkgInfo -expandbuildsettings -platform macosx -additionalcontentfile /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/assetcatalog_generated_info.plist -o /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Info.plist
+
+SwiftDriver Orbit normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-SwiftDriver -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Orbit -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/runner/work/e/e/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/e/e/build/Build/Products/Release -F /Users/runner/work/e/e/build/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache -output-file-map /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/e/e/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Products/Release/include -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-Swift.h -working-directory /Users/runner/work/e/e/Orbit -no-emit-module-separately-wmo
+
+SwiftDriver Orbit normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-SwiftDriver -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Orbit -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target x86_64-apple-macos14.0 -g -module-cache-path /Users/runner/work/e/e/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/e/e/build/Build/Products/Release -F /Users/runner/work/e/e/build/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache -output-file-map /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/e/e/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Products/Release/include -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-Swift.h -working-directory /Users/runner/work/e/e/Orbit -no-emit-module-separately-wmo
+
+SwiftDriver\ Compilation Orbit normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Orbit -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/runner/work/e/e/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/e/e/build/Build/Products/Release -F /Users/runner/work/e/e/build/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache -output-file-map /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/e/e/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Products/Release/include -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-Swift.h -working-directory /Users/runner/work/e/e/Orbit -no-emit-module-separately-wmo
+
+SwiftCompile normal x86_64 Compiling\ AppDelegate.swift,\ Browser.swift,\ CalculatorApp.swift,\ CalendarApp.swift,\ CalendarService.swift,\ ClockApp.swift,\ MapsApp.swift,\ MenuBar.swift,\ MusicApp.swift,\ NotesApp.swift,\ OrbitApp.swift,\ OrbitApps.swift,\ OrbitHomeView.swift,\ PhotosApp.swift,\ RingStore.swift,\ RingView.swift,\ SearchOverlay.swift,\ SettingsView.swift,\ Theme.swift,\ WeatherApp.swift,\ WeatherService.swift,\ Widgets.swift,\ WindowRouter.swift,\ YouTubeApp.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/e/e/Orbit/Orbit/AppDelegate.swift /Users/runner/work/e/e/Orbit/Orbit/Browser.swift /Users/runner/work/e/e/Orbit/Orbit/CalculatorApp.swift /Users/runner/work/e/e/Orbit/Orbit/CalendarApp.swift /Users/runner/work/e/e/Orbit/Orbit/CalendarService.swift /Users/runner/work/e/e/Orbit/Orbit/ClockApp.swift /Users/runner/work/e/e/Orbit/Orbit/MapsApp.swift /Users/runner/work/e/e/Orbit/Orbit/MenuBar.swift /Users/runner/work/e/e/Orbit/Orbit/MusicApp.swift /Users/runner/work/e/e/Orbit/Orbit/NotesApp.swift /Users/runner/work/e/e/Orbit/Orbit/OrbitApp.swift /Users/runner/work/e/e/Orbit/Orbit/OrbitApps.swift /Users/runner/work/e/e/Orbit/Orbit/OrbitHomeView.swift /Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift /Users/runner/work/e/e/Orbit/Orbit/RingStore.swift /Users/runner/work/e/e/Orbit/Orbit/RingView.swift /Users/runner/work/e/e/Orbit/Orbit/SearchOverlay.swift /Users/runner/work/e/e/Orbit/Orbit/SettingsView.swift /Users/runner/work/e/e/Orbit/Orbit/Theme.swift /Users/runner/work/e/e/Orbit/Orbit/WeatherApp.swift /Users/runner/work/e/e/Orbit/Orbit/WeatherService.swift /Users/runner/work/e/e/Orbit/Orbit/Widgets.swift /Users/runner/work/e/e/Orbit/Orbit/WindowRouter.swift /Users/runner/work/e/e/Orbit/Orbit/YouTubeApp.swift /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Orbit' from project 'Orbit')
+
+CompileSwift normal x86_64 (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:74:37: warning: conformance of 'NSImage' to 'Sendable' is unavailable; this is an error in the Swift 6 language mode
+        let image: NSImage? = await Task.detached(priority: .utility) {
+                                    ^
+note: conformance of 'NSImage' to 'Sendable' has been explicitly marked unavailable here
+@_nonSendable(_assumed)
+^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:74:42: warning: conformance of 'NSImage' to 'Sendable' is unavailable; this is an error in the Swift 6 language mode
+        let image: NSImage? = await Task.detached(priority: .utility) {
+                                         ^
+note: conformance of 'NSImage' to 'Sendable' has been explicitly marked unavailable here
+@_nonSendable(_assumed)
+^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:76:11: warning: conformance of 'NSImage' to 'Sendable' is unavailable; this is an error in the Swift 6 language mode
+        }.value
+          ^
+note: conformance of 'NSImage' to 'Sendable' has been explicitly marked unavailable here
+@_nonSendable(_assumed)
+^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:74:37: warning: non-sendable type 'Task<NSImage?, Never>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode
+        let image: NSImage? = await Task.detached(priority: .utility) {
+                                    ^
+_Concurrency.Task:2:23: note: generic struct 'Task' does not conform to the 'Sendable' protocol
+@frozen public struct Task<Success, Failure> : Sendable where Success : Sendable, Failure : Error {
+                      ^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:76:11: warning: non-sendable type 'NSImage?' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode
+        }.value
+          ^
+Swift.Optional:1:21: note: generic enum 'Optional' does not conform to the 'Sendable' protocol
+@frozen public enum Optional<Wrapped> : ~Copyable where Wrapped : ~Copyable {
+                    ^
+
+SwiftCompile normal arm64 Compiling\ AppDelegate.swift,\ Browser.swift,\ CalculatorApp.swift,\ CalendarApp.swift,\ CalendarService.swift,\ ClockApp.swift,\ MapsApp.swift,\ MenuBar.swift,\ MusicApp.swift,\ NotesApp.swift,\ OrbitApp.swift,\ OrbitApps.swift,\ OrbitHomeView.swift,\ PhotosApp.swift,\ RingStore.swift,\ RingView.swift,\ SearchOverlay.swift,\ SettingsView.swift,\ Theme.swift,\ WeatherApp.swift,\ WeatherService.swift,\ Widgets.swift,\ WindowRouter.swift,\ YouTubeApp.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/e/e/Orbit/Orbit/AppDelegate.swift /Users/runner/work/e/e/Orbit/Orbit/Browser.swift /Users/runner/work/e/e/Orbit/Orbit/CalculatorApp.swift /Users/runner/work/e/e/Orbit/Orbit/CalendarApp.swift /Users/runner/work/e/e/Orbit/Orbit/CalendarService.swift /Users/runner/work/e/e/Orbit/Orbit/ClockApp.swift /Users/runner/work/e/e/Orbit/Orbit/MapsApp.swift /Users/runner/work/e/e/Orbit/Orbit/MenuBar.swift /Users/runner/work/e/e/Orbit/Orbit/MusicApp.swift /Users/runner/work/e/e/Orbit/Orbit/NotesApp.swift /Users/runner/work/e/e/Orbit/Orbit/OrbitApp.swift /Users/runner/work/e/e/Orbit/Orbit/OrbitApps.swift /Users/runner/work/e/e/Orbit/Orbit/OrbitHomeView.swift /Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift /Users/runner/work/e/e/Orbit/Orbit/RingStore.swift /Users/runner/work/e/e/Orbit/Orbit/RingView.swift /Users/runner/work/e/e/Orbit/Orbit/SearchOverlay.swift /Users/runner/work/e/e/Orbit/Orbit/SettingsView.swift /Users/runner/work/e/e/Orbit/Orbit/Theme.swift /Users/runner/work/e/e/Orbit/Orbit/WeatherApp.swift /Users/runner/work/e/e/Orbit/Orbit/WeatherService.swift /Users/runner/work/e/e/Orbit/Orbit/Widgets.swift /Users/runner/work/e/e/Orbit/Orbit/WindowRouter.swift /Users/runner/work/e/e/Orbit/Orbit/YouTubeApp.swift /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Orbit' from project 'Orbit')
+CompileSwift normal arm64 (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:74:37: warning: conformance of 'NSImage' to 'Sendable' is unavailable; this is an error in the Swift 6 language mode
+        let image: NSImage? = await Task.detached(priority: .utility) {
+                                    ^
+note: conformance of 'NSImage' to 'Sendable' has been explicitly marked unavailable here
+@_nonSendable(_assumed)
+^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:74:42: warning: conformance of 'NSImage' to 'Sendable' is unavailable; this is an error in the Swift 6 language mode
+        let image: NSImage? = await Task.detached(priority: .utility) {
+                                         ^
+note: conformance of 'NSImage' to 'Sendable' has been explicitly marked unavailable here
+@_nonSendable(_assumed)
+^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:76:11: warning: conformance of 'NSImage' to 'Sendable' is unavailable; this is an error in the Swift 6 language mode
+        }.value
+          ^
+note: conformance of 'NSImage' to 'Sendable' has been explicitly marked unavailable here
+@_nonSendable(_assumed)
+^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:74:37: warning: non-sendable type 'Task<NSImage?, Never>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode
+        let image: NSImage? = await Task.detached(priority: .utility) {
+                                    ^
+_Concurrency.Task:2:23: note: generic struct 'Task' does not conform to the 'Sendable' protocol
+@frozen public struct Task<Success, Failure> : Sendable where Success : Sendable, Failure : Error {
+                      ^
+/Users/runner/work/e/e/Orbit/Orbit/PhotosApp.swift:76:11: warning: non-sendable type 'NSImage?' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode
+        }.value
+          ^
+Swift.Optional:1:21: note: generic enum 'Optional' does not conform to the 'Sendable' protocol
+@frozen public enum Optional<Wrapped> : ~Copyable where Wrapped : ~Copyable {
+                    ^
+
+SwiftDriver\ Compilation Orbit normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Orbit -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target x86_64-apple-macos14.0 -g -module-cache-path /Users/runner/work/e/e/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/e/e/build/Build/Products/Release -F /Users/runner/work/e/e/build/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache -output-file-map /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/e/e/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Products/Release/include -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-Swift.h -working-directory /Users/runner/work/e/e/Orbit -no-emit-module-separately-wmo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling AppDelegate.swift, Browser.swift, CalculatorApp.swift, CalendarApp.swift, CalendarService.swift, ClockApp.swift, MapsApp.swift, MenuBar.swift, MusicApp.swift, NotesApp.swift, OrbitApp.swift, OrbitApps.swift, OrbitHomeView.swift, PhotosApp.swift, RingStore.swift, RingView.swift, SearchOverlay.swift, SettingsView.swift, Theme.swift, WeatherApp.swift, WeatherService.swift, Widgets.swift, WindowRouter.swift, YouTubeApp.swift, GeneratedAssetSymbols.swift (in target 'Orbit' from project 'Orbit')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AppDelegate.swift, Browser.swift, CalculatorApp.swift, CalendarApp.swift, CalendarService.swift, ClockApp.swift, MapsApp.swift, MenuBar.swift, MusicApp.swift, NotesApp.swift, OrbitApp.swift, OrbitApps.swift, OrbitHomeView.swift, PhotosApp.swift, RingStore.swift, RingView.swift, SearchOverlay.swift, SettingsView.swift, Theme.swift, WeatherApp.swift, WeatherService.swift, Widgets.swift, WindowRouter.swift, YouTubeApp.swift, GeneratedAssetSymbols.swift (in target 'Orbit' from project 'Orbit')
+
+SwiftDriver\ Compilation\ Requirements Orbit normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Orbit -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/runner/work/e/e/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/e/e/build/Build/Products/Release -F /Users/runner/work/e/e/build/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache -output-file-map /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/e/e/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Products/Release/include -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-Swift.h -working-directory /Users/runner/work/e/e/Orbit -no-emit-module-separately-wmo
+
+SwiftDriver\ Compilation\ Requirements Orbit normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Orbit -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -target x86_64-apple-macos14.0 -g -module-cache-path /Users/runner/work/e/e/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/e/e/build/Build/Products/Release -F /Users/runner/work/e/e/build/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/e/e/build/SDKStatCaches.noindex/macosx15.5-24F74-a403186ba963133a54a0e0cacd566b0b.sdkstatcache -output-file-map /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/e/e/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-generated-files.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-own-target-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit-project-headers.hmap -Xcc -I/Users/runner/work/e/e/build/Build/Products/Release/include -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-Swift.h -working-directory /Users/runner/work/e/e/Orbit -no-emit-module-separately-wmo
+
+SwiftMergeGeneratedHeaders /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/Orbit-Swift.h /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-Swift.h /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-Swift.h (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit-Swift.h -arch x86_64 /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit-Swift.h -o /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/DerivedSources/Orbit-Swift.h
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/x86_64-apple-macos.swiftmodule /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftmodule (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftmodule /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/x86_64-apple-macos.swiftmodule
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/x86_64-apple-macos.swiftdoc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftdoc (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftdoc /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/x86_64-apple-macos.swiftdoc
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/x86_64-apple-macos.abi.json /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.abi.json (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.abi.json /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/x86_64-apple-macos.abi.json
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/arm64-apple-macos.swiftmodule /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftmodule (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftmodule /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/arm64-apple-macos.swiftdoc /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftdoc (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftdoc /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/arm64-apple-macos.abi.json /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.abi.json (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.abi.json /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftsourceinfo (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftsourceinfo /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo
+
+Copy /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftsourceinfo (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftsourceinfo /Users/runner/work/e/e/build/Build/Products/Release/Orbit.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+Ld /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Binary/Orbit normal x86_64 (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-macos14.0 -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -Os -L/Users/runner/work/e/e/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/Users/runner/work/e/e/build/Build/Products/Release -F/Users/runner/work/e/e/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/Users/runner/work/e/e/build/Build/Products/Release -filelist /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.LinkFileList -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_lto.o -Xlinker -dependency_info -Xlinker /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.swiftmodule -Xlinker -no_adhoc_codesign -o /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Binary/Orbit
+
+Ld /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Binary/Orbit normal arm64 (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -Os -L/Users/runner/work/e/e/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/Users/runner/work/e/e/build/Build/Products/Release -F/Users/runner/work/e/e/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/Users/runner/work/e/e/build/Build/Products/Release -filelist /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.LinkFileList -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_lto.o -Xlinker -dependency_info -Xlinker /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.swiftmodule -Xlinker -no_adhoc_codesign -o /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Binary/Orbit
+
+CreateUniversalBinary /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS/Orbit normal arm64\ x86_64 (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -create /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Binary/Orbit /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Binary/Orbit -output /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS/Orbit
+
+GenerateDSYMFile /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app.dSYM /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS/Orbit (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS/Orbit -o /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app.dSYM
+
+ExtractAppIntentsMetadata (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Orbit --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk --xcode-version 16F6 --platform-family macOS --deployment-target 14.0 --bundle-identifier com.example.orbit --output /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Resources --target-triple arm64-apple-macos14.0 --target-triple x86_64-apple-macos14.0 --binary-file /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS/Orbit --dependency-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit_dependency_info.dat --dependency-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit_dependency_info.dat --stringsdata-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --stringsdata-file /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftFileList --source-file-list /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftFileList --metadata-file-list /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/arm64/Orbit.SwiftConstValuesFileList --swift-const-vals-list /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Objects-normal/x86_64/Orbit.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-21 14:47:29.408 appintentsmetadataprocessor[1990:9448] Starting appintentsmetadataprocessor export
+2026-10-21 14:47:29.418 appintentsmetadataprocessor[1990:9448] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/MacOS/Orbit --scan-folder /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Frameworks --scan-folder /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/PlugIns --scan-folder /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Library/SystemExtensions --scan-folder /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Extensions --platform macosx --toolchain /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+CodeSign /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /Users/runner/work/e/e/build/Build/Intermediates.noindex/Orbit.build/Release/Orbit.build/Orbit.app.xcent --timestamp\=none --generate-entitlement-der /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app
+
+RegisterExecutionPolicyException /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-RegisterExecutionPolicyException /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app
+
+Validate /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    builtin-validationUtility /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+Touch /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /usr/bin/touch -c /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app
+
+RegisterWithLaunchServices /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app (in target 'Orbit' from project 'Orbit')
+    cd /Users/runner/work/e/e/Orbit
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /Users/runner/work/e/e/build/Build/Products/Release/Orbit.app
+
+note: Disabling previews because SWIFT_VERSION is set and SWIFT_OPTIMIZATION_LEVEL=-O, expected -Onone (in target 'Orbit' from project 'Orbit')
+** BUILD SUCCEEDED **
+
+BUILD OK
