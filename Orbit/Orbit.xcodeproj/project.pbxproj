@@ -1,0 +1,311 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		481D375923F91438B77A66E3 /* AppCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D41044E12FD42CB94FB3D4 /* AppCatalog.swift */; };
+		846B9F8FC92ED99DAD2DDF5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDA2E4FD0E5D774CAE7366 /* AppDelegate.swift */; };
+		5CB293632080F72F132080F9 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102F9A978F57FEEF7F10B88C /* Browser.swift */; };
+		F58D2706749EF4219725E70E /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93FEDC1654FB042BE40C76 /* CalendarService.swift */; };
+		04C854C4427D9CDDFC25ABEF /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81AA4F150783839C290FF85 /* MenuBar.swift */; };
+		6CAD6250194BABFE03D894BC /* OrbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206E14AC6D7563721A5EFD5A /* OrbitApp.swift */; };
+		2ACD3B5F82D52834FE4E67B6 /* OrbitHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B604B542E9F4DCB4C0D1D18C /* OrbitHomeView.swift */; };
+		C96057D68E1B222AA4F99408 /* RingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C229B69962FDA8CD0F5E5362 /* RingStore.swift */; };
+		1A8F5ABA2B9B92D6298EA802 /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AA724496984520B52B72F3 /* RingView.swift */; };
+		78621481C88E6875D000C577 /* SearchOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9EA3ECC8B3151C44A7090D /* SearchOverlay.swift */; };
+		85D3D904B3E4CF11EF0A3042 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F5F5C6A33AB2D897E3A9F /* SettingsView.swift */; };
+		838086257F85A3779D3875E5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB0F58926D479CB33E6804B /* Theme.swift */; };
+		A5F54D8770F64693D490788A /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F3C9E84700C2D17F53BD6 /* WeatherService.swift */; };
+		BD34378D131F8177866D329A /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E22898E495B0FCCD20A03 /* Widgets.swift */; };
+		D4CDD531A9D6FAC569024934 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE17DBCA7336FDD4E7EF19 /* WindowRouter.swift */; };
+		DB249DB9D0FF833647E29581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9973165E2B0FD4A3AAC566 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		48D41044E12FD42CB94FB3D4 /* AppCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCatalog.swift; sourceTree = "<group>"; };
+		B4FDA2E4FD0E5D774CAE7366 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		102F9A978F57FEEF7F10B88C /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		3A93FEDC1654FB042BE40C76 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		E81AA4F150783839C290FF85 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		206E14AC6D7563721A5EFD5A /* OrbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitApp.swift; sourceTree = "<group>"; };
+		B604B542E9F4DCB4C0D1D18C /* OrbitHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitHomeView.swift; sourceTree = "<group>"; };
+		C229B69962FDA8CD0F5E5362 /* RingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingStore.swift; sourceTree = "<group>"; };
+		B6AA724496984520B52B72F3 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		BD9EA3ECC8B3151C44A7090D /* SearchOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOverlay.swift; sourceTree = "<group>"; };
+		F02F5F5C6A33AB2D897E3A9F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8EB0F58926D479CB33E6804B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A11F3C9E84700C2D17F53BD6 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		960E22898E495B0FCCD20A03 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
+		60DE17DBCA7336FDD4E7EF19 /* WindowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
+		6F9973165E2B0FD4A3AAC566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB1A44531810F64AA931039F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5BF48AA40CAD7891EB709FC /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7CC421A1DDB28E78FC2224AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		518DA81DB9B99529C0C0AEBE = {
+			isa = PBXGroup;
+			children = (
+				1129B6A53940C88B539F2B2B /* Orbit */,
+				547D009064F7C3F13BEF3460 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1129B6A53940C88B539F2B2B /* Orbit */ = {
+			isa = PBXGroup;
+			children = (
+				48D41044E12FD42CB94FB3D4 /* AppCatalog.swift */,
+				B4FDA2E4FD0E5D774CAE7366 /* AppDelegate.swift */,
+				102F9A978F57FEEF7F10B88C /* Browser.swift */,
+				3A93FEDC1654FB042BE40C76 /* CalendarService.swift */,
+				E81AA4F150783839C290FF85 /* MenuBar.swift */,
+				206E14AC6D7563721A5EFD5A /* OrbitApp.swift */,
+				B604B542E9F4DCB4C0D1D18C /* OrbitHomeView.swift */,
+				C229B69962FDA8CD0F5E5362 /* RingStore.swift */,
+				B6AA724496984520B52B72F3 /* RingView.swift */,
+				BD9EA3ECC8B3151C44A7090D /* SearchOverlay.swift */,
+				F02F5F5C6A33AB2D897E3A9F /* SettingsView.swift */,
+				8EB0F58926D479CB33E6804B /* Theme.swift */,
+				A11F3C9E84700C2D17F53BD6 /* WeatherService.swift */,
+				960E22898E495B0FCCD20A03 /* Widgets.swift */,
+				60DE17DBCA7336FDD4E7EF19 /* WindowRouter.swift */,
+				6F9973165E2B0FD4A3AAC566 /* Assets.xcassets */,
+				AB1A44531810F64AA931039F /* Info.plist */,
+			);
+			path = Orbit;
+			sourceTree = "<group>";
+		};
+		547D009064F7C3F13BEF3460 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5BF48AA40CAD7891EB709FC /* Orbit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* Orbit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD7B903BF5B76A92FBB9FF44 /* Build configuration list for PBXNativeTarget "Orbit" */;
+			buildPhases = (
+				303CCE6304B962FDAF287552 /* Sources */,
+				7CC421A1DDB28E78FC2224AF /* Frameworks */,
+				F964B4AC93F8CB0399137DF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Orbit;
+			productName = Orbit;
+			productReference = F5BF48AA40CAD7891EB709FC /* Orbit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					42AEFBAE01D2DFD981F7DA7D = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = F9FBB92E94E3EF23FA14607F /* Build configuration list for PBXProject "Orbit" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 518DA81DB9B99529C0C0AEBE;
+			productRefGroup = 547D009064F7C3F13BEF3460 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* Orbit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F964B4AC93F8CB0399137DF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB249DB9D0FF833647E29581 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		303CCE6304B962FDAF287552 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				481D375923F91438B77A66E3 /* AppCatalog.swift in Sources */,
+				846B9F8FC92ED99DAD2DDF5B /* AppDelegate.swift in Sources */,
+				5CB293632080F72F132080F9 /* Browser.swift in Sources */,
+				F58D2706749EF4219725E70E /* CalendarService.swift in Sources */,
+				04C854C4427D9CDDFC25ABEF /* MenuBar.swift in Sources */,
+				6CAD6250194BABFE03D894BC /* OrbitApp.swift in Sources */,
+				2ACD3B5F82D52834FE4E67B6 /* OrbitHomeView.swift in Sources */,
+				C96057D68E1B222AA4F99408 /* RingStore.swift in Sources */,
+				1A8F5ABA2B9B92D6298EA802 /* RingView.swift in Sources */,
+				78621481C88E6875D000C577 /* SearchOverlay.swift in Sources */,
+				85D3D904B3E4CF11EF0A3042 /* SettingsView.swift in Sources */,
+				838086257F85A3779D3875E5 /* Theme.swift in Sources */,
+				A5F54D8770F64693D490788A /* WeatherService.swift in Sources */,
+				BD34378D131F8177866D329A /* Widgets.swift in Sources */,
+				D4CDD531A9D6FAC569024934 /* WindowRouter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		06DB87319F2818D2126BDA3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EAEC4ABA75D5863313556F12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		968426D8A36492C5C326175F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Orbit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Orbit;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.orbit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		038CE5F9D645F2DABC3BB617 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Orbit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Orbit;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.orbit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9FBB92E94E3EF23FA14607F /* Build configuration list for PBXProject "Orbit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06DB87319F2818D2126BDA3E /* Debug */,
+				EAEC4ABA75D5863313556F12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD7B903BF5B76A92FBB9FF44 /* Build configuration list for PBXNativeTarget "Orbit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				968426D8A36492C5C326175F /* Debug */,
+				038CE5F9D645F2DABC3BB617 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}

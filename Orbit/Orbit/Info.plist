@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Orbit shows your next calendar event on the home screen.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Orbit shows your next calendar event on the home screen.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Orbit uses your approximate location to show local weather.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Orbit uses your approximate location to show local weather.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Websites you open in Orbit's browser can ask to use your camera, for example for video calls.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Websites you open in Orbit's browser can ask to use your microphone, for example for video calls.</string>
+</dict>
+</plist>

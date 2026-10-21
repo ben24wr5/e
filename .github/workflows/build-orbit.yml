@@ -1,0 +1,47 @@
+name: Build Orbit for Mac
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Orbit.app and Orbit.dmg
+        run: |
+          set -o pipefail
+          mkdir -p dist
+          xcodebuild -version | tee dist/build.log
+          status=0
+          xcodebuild -project Orbit/Orbit.xcodeproj -scheme Orbit -configuration Release \
+            -derivedDataPath build ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY=- build 2>&1 | tee -a dist/build.log || status=$?
+          if [ "$status" -eq 0 ]; then
+            mkdir -p dmgroot
+            cp -R build/Build/Products/Release/Orbit.app dmgroot/
+            ln -s /Applications dmgroot/Applications
+            hdiutil create -volname "Orbit" -srcfolder dmgroot -ov -format UDZO dist/Orbit.dmg
+            echo "BUILD OK" >> dist/build.log
+          else
+            echo "BUILD FAILED ($status)" >> dist/build.log
+          fi
+          echo "status=$status" >> "$GITHUB_ENV"
+
+      - name: Save results to the branch
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f dist
+          git commit -m "Orbit build results [skip ci]" || exit 0
+          git push
+
+      - name: Fail if the build failed
+        run: test "$status" = "0"
