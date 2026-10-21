@@ -1,8 +1,7 @@
 import SwiftUI
 import AppKit
 
-/// Lets non-SwiftUI code (the global hot key, the menu bar, the Dock)
-/// show Orbit's windows.
+/// Lets non-SwiftUI code (the global hot key, the Dock) show Orbit's windows.
 @MainActor
 final class WindowRouter {
     static let shared = WindowRouter()
@@ -29,10 +28,5 @@ final class WindowRouter {
         } else {
             showMain()
         }
-    }
-
-    func openWeb(_ url: URL) {
-        NSApp.activate(ignoringOtherApps: true)
-        openWindowAction?(id: "browser", value: BrowserRequest.reuse(url))
     }
 }

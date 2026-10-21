@@ -5,44 +5,56 @@ struct OrbitApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     @StateObject private var ring = RingStore()
-    @StateObject private var catalog = AppCatalog()
     @StateObject private var calendar = CalendarService()
     @StateObject private var weather = WeatherService()
+    @StateObject private var youtube = YouTubeModel()
+    @StateObject private var music = MusicPlayer()
+    @StateObject private var notes = NotesStore()
+    @StateObject private var photos = PhotosLibrary()
 
     var body: some Scene {
         // The phone-style Orbit home screen.
         WindowGroup("Orbit", id: "main") {
-            OrbitHomeView()
-                .environmentObject(ring)
-                .environmentObject(catalog)
-                .environmentObject(calendar)
-                .environmentObject(weather)
+            shared(OrbitHomeView())
                 .frame(minWidth: 420, idealWidth: 440, minHeight: 760, idealHeight: 820)
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 440, height: 820)
         .commands { OrbitCommands() }
 
-        // Built-in web browser (real WebKit, HTTPS, YouTube, fullscreen video).
+        // Orbit's built-in apps, one window each.
+        WindowGroup("Orbit App", id: "app", for: OrbitAppKind.self) { $kind in
+            shared(OrbitAppWindow(kind: kind ?? .notes))
+        }
+        .defaultSize(width: 1000, height: 720)
+
+        // Orbit's browser (real WebKit, HTTPS only).
         WindowGroup("Browser", id: "browser", for: BrowserRequest.self) { $request in
-            BrowserWindow(startURL: request?.url ?? Defaults.homePage)
+            shared(BrowserWindow(startURL: request?.url ?? Defaults.homePage))
         }
         .defaultSize(width: 1240, height: 820)
 
         Settings {
-            SettingsView()
-                .environmentObject(ring)
-                .environmentObject(catalog)
-                .environmentObject(weather)
-                .environmentObject(calendar)
+            shared(SettingsView())
         }
 
         MenuBarExtra {
-            MenuBarContent()
-                .environmentObject(ring)
+            shared(MenuBarContent())
         } label: {
             MenuBarLabel()
         }
+    }
+
+    /// Gives every window the same shared data.
+    private func shared<V: View>(_ view: V) -> some View {
+        view
+            .environmentObject(ring)
+            .environmentObject(calendar)
+            .environmentObject(weather)
+            .environmentObject(youtube)
+            .environmentObject(music)
+            .environmentObject(notes)
+            .environmentObject(photos)
     }
 }
 
@@ -51,8 +63,7 @@ enum Defaults {
 }
 
 /// Identifies a browser window. Opening the same request again brings the
-/// existing window forward (tapping YouTube twice won't stack windows);
-/// a fresh `token` forces a brand-new window.
+/// existing window forward; a fresh `token` forces a brand-new window.
 struct BrowserRequest: Codable, Hashable {
     var url: URL
     var token: UUID?

@@ -34,7 +34,7 @@ struct OrbitHomeView: View {
                     }
                     .fixedSize(horizontal: false, vertical: true)
 
-                    Text("Scroll or drag to spin · ⌘K to search · ⌥Space anywhere")
+                    Text("Spin the ring · ⌘K for all apps · ⌥Space anywhere")
                         .font(.orbit(12))
                         .foregroundStyle(Theme.tertiary)
                         .frame(maxWidth: .infinity)
@@ -55,9 +55,7 @@ struct OrbitHomeView: View {
     }
 
     private func open(_ item: RingItem) {
-        Launcher.open(item) { url in
-            openWindow(id: "browser", value: BrowserRequest.reuse(url))
-        }
+        AppOpener.open(item, openWindow)
     }
 }
 

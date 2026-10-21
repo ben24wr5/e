@@ -17,6 +17,26 @@ final class WeatherService: NSObject, ObservableObject {
     }
 
     @Published private(set) var current: Current?
+    @Published private(set) var hours: [HourForecast] = []
+    @Published private(set) var days: [DayForecast] = []
+    @Published private(set) var updated: Date?
+
+    struct HourForecast: Identifiable, Equatable {
+        var id: Date { time }
+        let time: Date
+        let temperature: Double
+        let code: Int
+        let rainChance: Int
+    }
+
+    struct DayForecast: Identifiable, Equatable {
+        var id: Date { date }
+        let date: Date
+        let code: Int
+        let high: Double
+        let low: Double
+        let rainChance: Int
+    }
     @Published private(set) var errorMessage: String?
 
     @Published var fallbackCity: String {
@@ -111,8 +131,9 @@ final class WeatherService: NSObject, ObservableObject {
             URLQueryItem(name: "latitude", value: String(format: "%.4f", lat)),
             URLQueryItem(name: "longitude", value: String(format: "%.4f", lon)),
             URLQueryItem(name: "current", value: "temperature_2m,weather_code,is_day"),
-            URLQueryItem(name: "hourly", value: "precipitation_probability"),
-            URLQueryItem(name: "forecast_days", value: "2"),
+            URLQueryItem(name: "hourly", value: "temperature_2m,weather_code,precipitation_probability"),
+            URLQueryItem(name: "daily", value: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max"),
+            URLQueryItem(name: "forecast_days", value: "7"),
             URLQueryItem(name: "timezone", value: "auto"),
             URLQueryItem(name: "temperature_unit", value: useFahrenheit ? "fahrenheit" : "celsius"),
         ]
@@ -126,6 +147,8 @@ final class WeatherService: NSObject, ObservableObject {
                 outlook: WeatherService.rainOutlook(r),
                 isDay: (r.current.is_day ?? 1) == 1
             )
+            (hours, days) = WeatherService.forecast(r)
+            updated = Date()
             errorMessage = nil
         } catch {
             errorMessage = "Weather unavailable"
@@ -152,6 +175,44 @@ final class WeatherService: NSObject, ObservableObject {
             }
         }
         return "No rain expected soon"
+    }
+
+    private static func forecast(_ r: ForecastResponse) -> ([HourForecast], [DayForecast]) {
+        let zone = TimeZone(secondsFromGMT: r.utc_offset_seconds ?? 0) ?? .current
+        let hourFormat = DateFormatter()
+        hourFormat.locale = Locale(identifier: "en_US_POSIX")
+        hourFormat.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        hourFormat.timeZone = zone
+        let dayFormat = DateFormatter()
+        dayFormat.locale = Locale(identifier: "en_US_POSIX")
+        dayFormat.dateFormat = "yyyy-MM-dd"
+        dayFormat.timeZone = zone
+
+        var hours: [HourForecast] = []
+        if let h = r.hourly {
+            let now = Date().addingTimeInterval(-3600)
+            for (i, stamp) in h.time.enumerated() {
+                guard let time = hourFormat.date(from: stamp), time > now,
+                      let temps = h.temperature_2m, i < temps.count, let temp = temps[i] else { continue }
+                let code = h.weather_code.flatMap { i < $0.count ? $0[i] : nil } ?? 0
+                let rain = i < h.precipitation_probability.count ? (h.precipitation_probability[i] ?? 0) : 0
+                hours.append(HourForecast(time: time, temperature: temp, code: code, rainChance: rain))
+                if hours.count == 24 { break }
+            }
+        }
+
+        var days: [DayForecast] = []
+        if let d = r.daily {
+            for (i, stamp) in d.time.enumerated() {
+                guard let date = dayFormat.date(from: stamp),
+                      i < d.temperature_2m_max.count, i < d.temperature_2m_min.count,
+                      let high = d.temperature_2m_max[i], let low = d.temperature_2m_min[i] else { continue }
+                let code = i < d.weather_code.count ? (d.weather_code[i] ?? 0) : 0
+                let rain = d.precipitation_probability_max.flatMap { i < $0.count ? $0[i] : nil } ?? 0
+                days.append(DayForecast(date: date, code: code, high: high, low: low, rainChance: rain))
+            }
+        }
+        return (hours, days)
     }
 
     // MARK: Weather codes (WMO)
@@ -228,8 +289,18 @@ private struct ForecastResponse: Decodable {
     struct Hourly: Decodable {
         let time: [String]
         let precipitation_probability: [Int?]
+        let temperature_2m: [Double?]?
+        let weather_code: [Int?]?
+    }
+    struct Daily: Decodable {
+        let time: [String]
+        let weather_code: [Int?]
+        let temperature_2m_max: [Double?]
+        let temperature_2m_min: [Double?]
+        let precipitation_probability_max: [Int?]?
     }
     let utc_offset_seconds: Int?
     let current: CurrentBlock
     let hourly: Hourly?
+    let daily: Daily?
 }

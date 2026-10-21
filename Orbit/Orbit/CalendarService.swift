@@ -1,9 +1,60 @@
 import Foundation
-import EventKit
-import AppKit
 
-/// Reads the next event from the Mac's own Calendar (iCloud, Google, Exchange —
-/// whatever accounts are set up in Calendar.app).
+/// Where Orbit keeps its own data: ~/Library/Application Support/Orbit
+enum OrbitStorage {
+    static var folder: URL {
+        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            ?? FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support")
+        let url = base.appendingPathComponent("Orbit", isDirectory: true)
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        return url
+    }
+
+    static func subfolder(_ name: String) -> URL {
+        let url = folder.appendingPathComponent(name, isDirectory: true)
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        return url
+    }
+
+    static func load<T: Decodable>(_ type: T.Type, from file: String) -> T? {
+        let url = folder.appendingPathComponent(file)
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try? decoder.decode(type, from: data)
+    }
+
+    static func save<T: Encodable>(_ value: T, to file: String) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        guard let data = try? encoder.encode(value) else { return }
+        try? data.write(to: folder.appendingPathComponent(file), options: .atomic)
+    }
+}
+
+/// An event in Orbit's own calendar.
+struct OrbitEvent: Identifiable, Codable, Hashable {
+    var id = UUID()
+    var title: String
+    var start: Date
+    var end: Date
+    var isAllDay: Bool
+    var location: String
+    var notes: String
+    var colorIndex: Int
+
+    static let palette: [UInt32] = [0xF5A524, 0x7DD3FC, 0xF87171, 0x4ADE80, 0xC4B5FD, 0xFF6B9A]
+
+    /// Does this event happen on the given day?
+    func occurs(on day: Date, calendar: Calendar = .current) -> Bool {
+        let dayStart = calendar.startOfDay(for: day)
+        guard let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) else { return false }
+        return start < dayEnd && end > dayStart || (isAllDay && calendar.isDate(start, inSameDayAs: day))
+    }
+}
+
+/// Orbit's own calendar. Events are stored inside Orbit, not in the Mac's Calendar.
 @MainActor
 final class CalendarService: ObservableObject {
     enum Status { case unknown, denied, ready }
@@ -16,75 +67,69 @@ final class CalendarService: ObservableObject {
         let isAllDay: Bool
     }
 
-    @Published private(set) var status: Status = .unknown
+    @Published private(set) var events: [OrbitEvent] = [] {
+        didSet { OrbitStorage.save(events, to: "calendar.json") }
+    }
     @Published private(set) var nextEvent: NextEvent?
+    let status: Status = .ready
 
-    private let store = EKEventStore()
     private var timer: Timer?
-    private var observer: NSObjectProtocol?
 
     init() {
-        observer = NotificationCenter.default.addObserver(
-            forName: .EKEventStoreChanged, object: store, queue: .main
-        ) { [weak self] _ in
+        events = OrbitStorage.load([OrbitEvent].self, from: "calendar.json") ?? []
+        refresh()
+        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
             Task { @MainActor in self?.refresh() }
         }
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            Task { @MainActor in self?.refresh() }
-        }
-        Task { await requestAccess() }
     }
 
-    func requestAccess() async {
-        switch EKEventStore.authorizationStatus(for: .event) {
-        case .fullAccess:
-            status = .ready
-            refresh()
-            return
-        case .denied, .restricted, .writeOnly:
-            status = .denied
-            return
-        default:
-            break
+    func events(on day: Date) -> [OrbitEvent] {
+        events.filter { $0.occurs(on: day) }
+            .sorted { a, b in
+                if a.isAllDay != b.isAllDay { return a.isAllDay }
+                return a.start < b.start
+            }
+    }
+
+    func hasEvents(on day: Date) -> Bool {
+        events.contains { $0.occurs(on: day) }
+    }
+
+    func save(_ event: OrbitEvent) {
+        var fixed = event
+        if fixed.end < fixed.start { fixed.end = fixed.start.addingTimeInterval(3600) }
+        if let index = events.firstIndex(where: { $0.id == fixed.id }) {
+            events[index] = fixed
+        } else {
+            events.append(fixed)
         }
-        do {
-            let granted = try await store.requestFullAccessToEvents()
-            status = granted ? .ready : .denied
-            if granted { refresh() }
-        } catch {
-            status = .denied
-        }
+        refresh()
+    }
+
+    func delete(_ event: OrbitEvent) {
+        events.removeAll { $0.id == event.id }
+        refresh()
     }
 
     func refresh() {
-        guard status == .ready else { return }
         let now = Date()
-        guard let end = Calendar.current.date(byAdding: .day, value: 7, to: now) else { return }
-        let predicate = store.predicateForEvents(withStart: now, end: end, calendars: nil)
-        let events = store.events(matching: predicate)
-            .filter { $0.endDate > now }
-            .sorted { $0.startDate < $1.startDate }
-        let pick = events.first(where: { !$0.isAllDay }) ?? events.first
-        nextEvent = pick.map {
-            NextEvent(
-                title: ($0.title?.isEmpty == false ? $0.title! : "Untitled event"),
-                start: $0.startDate,
-                end: $0.endDate,
-                location: $0.location?.isEmpty == false ? $0.location : nil,
-                isAllDay: $0.isAllDay
-            )
+        guard let horizon = Calendar.current.date(byAdding: .day, value: 7, to: now) else { return }
+        let upcoming = events
+            .filter { $0.end > now && $0.start < horizon }
+            .sorted { $0.start < $1.start }
+        let pick = upcoming.first(where: { !$0.isAllDay }) ?? upcoming.first
+        let next = pick.map {
+            NextEvent(title: $0.title.isEmpty ? "Untitled event" : $0.title,
+                      start: $0.start, end: $0.end,
+                      location: $0.location.isEmpty ? nil : $0.location,
+                      isAllDay: $0.isAllDay)
         }
-    }
-
-    func openPrivacySettings() {
-        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Calendars") {
-            NSWorkspace.shared.open(url)
-        }
+        if next != nextEvent { nextEvent = next }
     }
 }
 
 extension CalendarService.NextEvent {
-    /// "Design review in 16 min", "Design review now", "Tomorrow: Dentist".
+    /// "Design review in 16 min", "Design review — now", "Tomorrow: Dentist".
     func headline(now: Date = Date()) -> String {
         if isAllDay {
             return Calendar.current.isDateInToday(start) ? "Today: \(title)" : "\(dayWord(now: now)): \(title)"
@@ -94,8 +139,7 @@ extension CalendarService.NextEvent {
         if minutes < 1 { return "\(title) starting now" }
         if minutes < 60 { return "\(title) in \(minutes) min" }
         if Calendar.current.isDateInToday(start) {
-            let hours = minutes / 60
-            return "\(title) in \(hours) h \(minutes % 60) min"
+            return "\(title) in \(minutes / 60) h \(minutes % 60) min"
         }
         return "\(dayWord(now: now)): \(title)"
     }

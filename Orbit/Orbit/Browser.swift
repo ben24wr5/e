@@ -8,6 +8,10 @@ import UniformTypeIdentifiers
 /// pop-ups, file uploads and downloads.
 @MainActor
 final class BrowserModel: NSObject, ObservableObject {
+    /// Present as desktop Safari so sites serve their full desktop experience.
+    nonisolated static let userAgent =
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15"
+
     let webView: WKWebView
 
     @Published private(set) var currentURL: URL?
@@ -18,6 +22,7 @@ final class BrowserModel: NSObject, ObservableObject {
     @Published private(set) var progress: Double = 0
     @Published private(set) var isSecure = true
     @Published var lastDownload: String?
+    @Published var notice: String?
 
     private var observations: [NSKeyValueObservation] = []
 
@@ -34,8 +39,7 @@ final class BrowserModel: NSObject, ObservableObject {
         super.init()
 
         // Present as Safari so sites (YouTube included) serve their full desktop experience.
-        webView.customUserAgent =
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15"
+        webView.customUserAgent = BrowserModel.userAgent
         webView.allowsBackForwardNavigationGestures = true
         webView.allowsMagnification = true
         webView.navigationDelegate = self
@@ -84,10 +88,6 @@ final class BrowserModel: NSObject, ObservableObject {
     }
     func home() { webView.load(URLRequest(url: Defaults.homePage)) }
 
-    func openInDefaultBrowser() {
-        if let url = webView.url { NSWorkspace.shared.open(url) }
-    }
-
     func zoom(_ delta: CGFloat) {
         webView.pageZoom = max(0.5, min(3, webView.pageZoom + delta))
     }
@@ -118,9 +118,9 @@ extension BrowserModel: WKNavigationDelegate {
             decisionHandler(.cancel)
             if let secure = comps?.url { webView.load(URLRequest(url: secure)) }
         default:
-            // mailto:, facetime:, maps:, zoommtg: … hand off to the right Mac app.
+            // mailto:, facetime:, tel: … Orbit doesn't hand off to other apps.
             decisionHandler(.cancel)
-            NSWorkspace.shared.open(url)
+            notice = "Orbit Browser only opens web pages, so it skipped a \(scheme): link."
         }
     }
 
@@ -242,9 +242,7 @@ extension BrowserModel: WKDownloadDelegate {
 
     func downloadDidFinish(_ download: WKDownload) {
         if let name = lastDownload {
-            let url = (FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first)?
-                .appendingPathComponent(name)
-            if let url { NSWorkspace.shared.activateFileViewerSelecting([url]) }
+            notice = "Downloaded “\(name)” to your Downloads folder."
         }
     }
 
@@ -279,6 +277,31 @@ struct BrowserWindow: View {
                         .progressViewStyle(.linear)
                         .tint(Theme.accent)
                         .frame(height: 2)
+                }
+            }
+            .overlay(alignment: .bottom) {
+                if let notice = model.notice {
+                    HStack(spacing: 10) {
+                        Text(notice)
+                            .font(.orbit(13))
+                        Button {
+                            model.notice = nil
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Dismiss")
+                    }
+                    .foregroundStyle(Theme.text)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Capsule().fill(Theme.chip))
+                    .overlay(Capsule().stroke(Theme.chipLine, lineWidth: 1))
+                    .padding(.bottom, 18)
+                    .task(id: notice) {
+                        try? await Task.sleep(for: .seconds(5))
+                        if model.notice == notice { model.notice = nil }
+                    }
                 }
             }
             .navigationTitle(model.title.isEmpty ? "Orbit Browser" : model.title)
@@ -319,9 +342,6 @@ struct BrowserWindow: View {
                     }
                     .keyboardShortcut("r", modifiers: .command)
                     .help(model.isLoading ? "Stop" : "Reload")
-
-                    Button(action: model.openInDefaultBrowser) { Image(systemName: "safari") }
-                        .help("Open in your default browser")
 
                     Button {
                         WindowRouter.shared.showMain()

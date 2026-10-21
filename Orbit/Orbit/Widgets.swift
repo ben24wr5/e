@@ -32,6 +32,7 @@ struct GlanceCard<Content: View>: View {
 
 struct NextEventCard: View {
     @EnvironmentObject private var calendar: CalendarService
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         GlanceCard(action: tap) {
@@ -42,7 +43,7 @@ struct NextEventCard: View {
             case .denied:
                 Text("Calendar off")
                     .font(.orbit(16, .semibold))
-                Text("Click to allow access")
+                Text("Allow in Privacy settings")
                     .font(.orbit(13))
                     .foregroundStyle(Theme.secondary)
             case .ready:
@@ -68,19 +69,16 @@ struct NextEventCard: View {
     }
 
     private func tap() {
-        if calendar.status == .denied {
-            calendar.openPrivacySettings()
-        } else {
-            Launcher.openApp(bundleID: "com.apple.iCal")
-        }
+        AppOpener.open(.calendar, openWindow)
     }
 }
 
 struct WeatherCard: View {
     @EnvironmentObject private var weather: WeatherService
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
-        GlanceCard(action: { weather.refresh() }) {
+        GlanceCard(action: { AppOpener.open(.weather, openWindow) }) {
             if let now = weather.current {
                 CapsLabel(text: now.place)
                 HStack(spacing: 6) {
@@ -102,7 +100,7 @@ struct WeatherCard: View {
                 CapsLabel(text: "Weather")
                 Text(message)
                     .font(.orbit(14, .semibold))
-                Text("Click to retry")
+                Text("Open Weather to retry")
                     .font(.orbit(13))
                     .foregroundStyle(Theme.secondary)
             } else {
@@ -110,6 +108,6 @@ struct WeatherCard: View {
                 ProgressView().controlSize(.small)
             }
         }
-        .help("Refresh weather")
+        .help("Open Weather")
     }
 }

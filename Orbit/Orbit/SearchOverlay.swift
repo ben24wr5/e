@@ -1,11 +1,11 @@
 import SwiftUI
 
-/// The centre-button search: finds installed Mac apps, opens websites,
-/// and searches Google or YouTube in Orbit's browser.
+/// The centre-button screen: every Orbit app at a glance, plus search across
+/// apps, websites, the web and YouTube — all inside Orbit.
 struct SearchOverlay: View {
     @Binding var isPresented: Bool
 
-    @EnvironmentObject private var catalog: AppCatalog
+    @EnvironmentObject private var youtube: YouTubeModel
     @Environment(\.openWindow) private var openWindow
 
     @State private var query = ""
@@ -13,35 +13,37 @@ struct SearchOverlay: View {
     @FocusState private var fieldFocused: Bool
 
     enum Result: Identifiable {
-        case app(AppInfo)
+        case app(OrbitAppKind)
         case website(URL)
         case webSearch(String)
         case youtubeSearch(String)
 
         var id: String {
             switch self {
-            case .app(let app): return "app:\(app.path)"
+            case .app(let kind): return "app:\(kind.rawValue)"
             case .website(let url): return "url:\(url.absoluteString)"
-            case .webSearch(let q): return "google:\(q)"
+            case .webSearch(let q): return "web:\(q)"
             case .youtubeSearch(let q): return "yt:\(q)"
             }
         }
     }
 
+    private var trimmed: String { query.trimmingCharacters(in: .whitespacesAndNewlines) }
+
     private var results: [Result] {
-        let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        let q = trimmed
         guard !q.isEmpty else { return [] }
         var list: [Result] = []
+        list += OrbitAppKind.allCases.filter { $0.matches(q) }.map { .app($0) }
         if let url = URLInput.website(from: q) { list.append(.website(url)) }
-        list += catalog.search(q).map { .app($0) }
-        list.append(.webSearch(q))
         list.append(.youtubeSearch(q))
+        list.append(.webSearch(q))
         return list
     }
 
     var body: some View {
         ZStack(alignment: .top) {
-            Color.black.opacity(0.6)
+            Color.black.opacity(0.65)
                 .ignoresSafeArea()
                 .onTapGesture { close() }
 
@@ -50,7 +52,7 @@ struct SearchOverlay: View {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundStyle(Theme.accent)
-                    TextField("Search apps, websites or the web", text: $query)
+                    TextField("Search apps, websites or YouTube", text: $query)
                         .textFieldStyle(.plain)
                         .font(.orbit(18))
                         .focused($fieldFocused)
@@ -62,8 +64,11 @@ struct SearchOverlay: View {
                 .padding(.horizontal, 18)
                 .frame(height: 58)
 
-                if !results.isEmpty {
-                    Divider().overlay(Theme.chipLine)
+                Divider().overlay(Theme.chipLine)
+
+                if trimmed.isEmpty {
+                    allApps
+                } else {
                     ScrollView {
                         VStack(spacing: 2) {
                             ForEach(Array(results.enumerated()), id: \.element.id) { index, result in
@@ -75,26 +80,13 @@ struct SearchOverlay: View {
                         .padding(8)
                     }
                     .frame(maxHeight: 420)
-                } else if query.isEmpty {
-                    Text("Type an app name, a website like youtube.com, or anything to search.")
-                        .font(.orbit(13))
-                        .foregroundStyle(Theme.secondary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 18)
-                        .padding(.bottom, 16)
                 }
             }
-            .background(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Theme.chip)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .stroke(Theme.chipLine, lineWidth: 1)
-            )
+            .background(RoundedRectangle(cornerRadius: 20, style: .continuous).fill(Theme.chip))
+            .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).stroke(Theme.chipLine, lineWidth: 1))
             .shadow(color: .black.opacity(0.5), radius: 30, y: 10)
             .padding(.horizontal, 20)
-            .padding(.top, 90)
+            .padding(.top, 80)
             .foregroundStyle(Theme.text)
         }
         .onAppear {
@@ -107,6 +99,38 @@ struct SearchOverlay: View {
                 .opacity(0)
                 .accessibilityHidden(true)
         )
+    }
+
+    /// Every Orbit app, like a phone's app library.
+    private var allApps: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            CapsLabel(text: "All apps")
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 14) {
+                ForEach(OrbitAppKind.allCases) { kind in
+                    Button {
+                        AppOpener.open(kind, openWindow)
+                        close()
+                    } label: {
+                        VStack(spacing: 6) {
+                            OrbitAppGlyph(kind: kind)
+                                .frame(width: 26, height: 26)
+                                .frame(width: 54, height: 54)
+                                .background(Circle().fill(Theme.background))
+                                .overlay(Circle().stroke(Theme.chipLine, lineWidth: 1))
+                            Text(kind.title)
+                                .font(.orbit(11))
+                                .foregroundStyle(Theme.secondary)
+                                .lineLimit(1)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .help(kind.subtitle)
+                }
+            }
+        }
+        .padding(18)
     }
 
     private func move(_ by: Int) {
@@ -122,14 +146,15 @@ struct SearchOverlay: View {
 
     private func activate(_ result: Result) {
         switch result {
-        case .app(let app):
-            Launcher.openApp(at: app.url)
+        case .app(let kind):
+            AppOpener.open(kind, openWindow)
         case .website(let url):
             openWindow(id: "browser", value: BrowserRequest.fresh(url))
         case .webSearch(let q):
             openWindow(id: "browser", value: BrowserRequest.fresh(URLInput.googleSearch(q)))
         case .youtubeSearch(let q):
-            openWindow(id: "browser", value: BrowserRequest.fresh(URLInput.youtubeSearch(q)))
+            youtube.search(q)
+            AppOpener.open(.youtube, openWindow)
         }
         close()
     }
@@ -146,7 +171,8 @@ private struct ResultRow: View {
     var body: some View {
         HStack(spacing: 12) {
             icon
-                .frame(width: 28, height: 28)
+                .frame(width: 22, height: 22)
+                .frame(width: 30, height: 30)
             VStack(alignment: .leading, spacing: 1) {
                 Text(title)
                     .font(.orbit(15, .medium))
@@ -174,26 +200,20 @@ private struct ResultRow: View {
 
     @ViewBuilder private var icon: some View {
         switch result {
-        case .app(let app):
-            Image(nsImage: Launcher.icon(forAppAt: app.url))
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+        case .app(let kind):
+            OrbitAppGlyph(kind: kind)
         case .website(let url):
             WebIcon(url: url)
         case .webSearch:
-            Image(systemName: "globe")
-                .font(.system(size: 18))
-                .foregroundStyle(Theme.accent)
+            OrbitAppGlyph(kind: .browser)
         case .youtubeSearch:
-            Image(systemName: "play.rectangle.fill")
-                .font(.system(size: 18))
-                .foregroundStyle(Theme.accent)
+            OrbitAppGlyph(kind: .youtube)
         }
     }
 
     private var title: String {
         switch result {
-        case .app(let app): return app.name
+        case .app(let kind): return kind.title
         case .website(let url): return url.host ?? url.absoluteString
         case .webSearch(let q): return "Search the web for “\(q)”"
         case .youtubeSearch(let q): return "Search YouTube for “\(q)”"
@@ -202,10 +222,10 @@ private struct ResultRow: View {
 
     private var subtitle: String {
         switch result {
-        case .app: return "Application"
-        case .website(let url): return url.absoluteString
-        case .webSearch: return "Google · opens in Orbit browser"
-        case .youtubeSearch: return "YouTube · opens in Orbit browser"
+        case .app(let kind): return kind.subtitle
+        case .website(let url): return "Open in Orbit Browser · \(url.absoluteString)"
+        case .webSearch: return "Orbit Browser"
+        case .youtubeSearch: return "Orbit YouTube"
         }
     }
 }
@@ -219,11 +239,8 @@ enum URLInput {
         let lower = t.lowercased()
         if lower.hasPrefix("https://") { return URL(string: t) }
         if lower.hasPrefix("http://") {
-            // Upgrade to HTTPS.
             return URL(string: "https://" + t.dropFirst("http://".count))
         }
-        if lower.hasPrefix("localhost") { return nil }
-        // Something like "youtube.com" or "news.bbc.co.uk/sport".
         let host = lower.split(separator: "/").first.map(String.init) ?? lower
         let parts = host.split(separator: ".")
         guard parts.count >= 2, let tld = parts.last, tld.count >= 2,
@@ -234,12 +251,6 @@ enum URLInput {
     static func googleSearch(_ q: String) -> URL {
         var comps = URLComponents(string: "https://www.google.com/search")!
         comps.queryItems = [URLQueryItem(name: "q", value: q)]
-        return comps.url!
-    }
-
-    static func youtubeSearch(_ q: String) -> URL {
-        var comps = URLComponents(string: "https://www.youtube.com/results")!
-        comps.queryItems = [URLQueryItem(name: "search_query", value: q)]
         return comps.url!
     }
 

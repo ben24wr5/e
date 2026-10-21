@@ -167,20 +167,17 @@ struct RingButton: View {
     }
 }
 
-/// App icon for native apps, favicon for websites.
+/// Orbit app glyph, or a favicon for website shortcuts.
 struct RingIcon: View {
     let item: RingItem
 
     var body: some View {
         switch item.kind {
         case .app:
-            if let url = Launcher.appURL(for: item) {
-                Image(nsImage: Launcher.icon(forAppAt: url))
-                    .resizable()
-                    .interpolation(.high)
-                    .aspectRatio(contentMode: .fit)
+            if let app = item.app {
+                OrbitAppGlyph(kind: app)
             } else {
-                Image(systemName: "questionmark.app.dashed")
+                Image(systemName: "questionmark.circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundStyle(Theme.secondary)
@@ -233,7 +230,7 @@ struct CentreButton: View {
         .buttonStyle(.plain)
         .keyboardShortcut("k", modifiers: .command)
         .onHover { hovering = $0 }
-        .help("Search apps and the web (⌘K)")
+        .help("All apps and search (⌘K)")
         .accessibilityLabel("Search everything")
     }
 }

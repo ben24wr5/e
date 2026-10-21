@@ -1,14 +1,18 @@
 import SwiftUI
 
+/// Orbit's own Settings app.
 struct SettingsView: View {
     var body: some View {
         TabView {
             RingSettings()
-                .tabItem { Label("Ring", systemImage: "circle.circle") }
+                .tabItem { Label("Home Screen", systemImage: "circle.circle") }
             GeneralSettings()
                 .tabItem { Label("General", systemImage: "gearshape") }
+            StorageSettings()
+                .tabItem { Label("Storage", systemImage: "internaldrive") }
         }
-        .frame(width: 520, height: 520)
+        .frame(minWidth: 520, minHeight: 520)
+        .preferredColorScheme(.dark)
     }
 }
 
@@ -16,7 +20,6 @@ struct SettingsView: View {
 
 private struct RingSettings: View {
     @EnvironmentObject private var ring: RingStore
-    @EnvironmentObject private var catalog: AppCatalog
     @State private var showAppPicker = false
     @State private var showWebsiteForm = false
 
@@ -32,10 +35,11 @@ private struct RingSettings: View {
                 ForEach(ring.items) { item in
                     HStack(spacing: 10) {
                         RingIcon(item: item)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 20, height: 20)
+                            .frame(width: 26, height: 26)
                         VStack(alignment: .leading, spacing: 1) {
                             Text(item.name)
-                            Text(item.kind == .app ? "Mac app" : (item.urlString ?? "Website"))
+                            Text(item.kind == .app ? "Orbit app" : "Website · \(item.urlString ?? "")")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                                 .lineLimit(1)
@@ -68,7 +72,7 @@ private struct RingSettings: View {
         }
         .padding(20)
         .sheet(isPresented: $showAppPicker) {
-            AppPicker().environmentObject(ring).environmentObject(catalog)
+            AppPicker().environmentObject(ring)
         }
         .sheet(isPresented: $showWebsiteForm) {
             WebsiteForm().environmentObject(ring)
@@ -78,34 +82,32 @@ private struct RingSettings: View {
 
 private struct AppPicker: View {
     @EnvironmentObject private var ring: RingStore
-    @EnvironmentObject private var catalog: AppCatalog
     @Environment(\.dismiss) private var dismiss
-    @State private var filter = ""
 
-    private var shown: [AppInfo] {
-        let q = filter.trimmingCharacters(in: .whitespaces)
-        return q.isEmpty ? catalog.apps : catalog.apps.filter { $0.name.localizedCaseInsensitiveContains(q) }
+    private var available: [OrbitAppKind] {
+        OrbitAppKind.allCases.filter { !ring.contains($0) }
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Add an app to the ring").font(.headline)
-            TextField("Filter", text: $filter)
-                .textFieldStyle(.roundedBorder)
-            if catalog.isLoading && catalog.apps.isEmpty {
-                ProgressView("Finding your apps…")
+            Text("Add an Orbit app to the ring").font(.headline)
+            if available.isEmpty {
+                Text("Every Orbit app is already on your ring.")
+                    .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
-                List(shown) { app in
+                List(available) { kind in
                     Button {
-                        ring.add(.app(app.name, bundleID: app.bundleID, path: app.path))
+                        ring.add(.app(kind))
                         dismiss()
                     } label: {
                         HStack(spacing: 10) {
-                            Image(nsImage: Launcher.icon(forAppAt: app.url))
-                                .resizable()
-                                .frame(width: 22, height: 22)
-                            Text(app.name)
+                            OrbitAppGlyph(kind: kind)
+                                .frame(width: 20, height: 20)
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(kind.title)
+                                Text(kind.subtitle).font(.caption).foregroundStyle(.secondary)
+                            }
                             Spacer()
                         }
                         .contentShape(Rectangle())
@@ -114,14 +116,13 @@ private struct AppPicker: View {
                 }
             }
             HStack {
-                Button("Rescan") { catalog.reload() }
                 Spacer()
                 Button("Cancel") { dismiss() }
                     .keyboardShortcut(.cancelAction)
             }
         }
         .padding(20)
-        .frame(width: 420, height: 480)
+        .frame(width: 400, height: 440)
     }
 }
 
@@ -136,12 +137,12 @@ private struct WebsiteForm: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Add a website").font(.headline)
-            Text("It opens in Orbit's built-in browser over HTTPS.")
+            Text("It opens in Orbit Browser over HTTPS.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
             Form {
-                TextField("Name", text: $name, prompt: Text("YouTube"))
-                TextField("Address", text: $address, prompt: Text("youtube.com"))
+                TextField("Name", text: $name, prompt: Text("BBC News"))
+                TextField("Address", text: $address, prompt: Text("bbc.co.uk/news"))
             }
             if !address.isEmpty && url == nil {
                 Text("That doesn't look like a website address.")
@@ -171,42 +172,56 @@ private struct WebsiteForm: View {
 
 private struct GeneralSettings: View {
     @EnvironmentObject private var weather: WeatherService
-    @EnvironmentObject private var calendar: CalendarService
     @State private var city = ""
 
     var body: some View {
         Form {
-            Section("Shortcut") {
+            Section("Shortcuts") {
                 LabeledContent("Show or hide Orbit", value: "⌥ Space")
-                LabeledContent("Search", value: "⌘ K")
+                LabeledContent("All apps and search", value: "⌘ K")
                 LabeledContent("New browser window", value: "⌘ T")
             }
 
             Section("Weather") {
                 LabeledContent("Location") {
-                    Text(weather.usingDeviceLocation ? "Your Mac's location" : "City below")
+                    Text(weather.usingDeviceLocation ? "Your current location" : "The city below")
                         .foregroundStyle(.secondary)
                 }
                 HStack {
-                    TextField("City when location is off", text: $city)
+                    TextField("City", text: $city)
                         .onSubmit { weather.fallbackCity = city }
                     Button("Set") { weather.fallbackCity = city }
                 }
                 Toggle("Use Fahrenheit", isOn: $weather.useFahrenheit)
             }
-
-            Section("Calendar") {
-                LabeledContent("Access") {
-                    switch calendar.status {
-                    case .ready: Text("Allowed").foregroundStyle(.secondary)
-                    case .denied:
-                        Button("Open Privacy Settings") { calendar.openPrivacySettings() }
-                    case .unknown: Text("Asking…").foregroundStyle(.secondary)
-                    }
-                }
-            }
         }
         .formStyle(.grouped)
         .onAppear { city = weather.fallbackCity }
+    }
+}
+
+// MARK: - Storage
+
+private struct StorageSettings: View {
+    @EnvironmentObject private var notes: NotesStore
+    @EnvironmentObject private var calendar: CalendarService
+    @EnvironmentObject private var music: MusicPlayer
+    @EnvironmentObject private var photos: PhotosLibrary
+
+    var body: some View {
+        Form {
+            Section("Orbit keeps its own data") {
+                LabeledContent("Notes", value: "\(notes.notes.count)")
+                LabeledContent("Calendar events", value: "\(calendar.events.count)")
+                LabeledContent("Songs", value: "\(music.tracks.count)")
+                LabeledContent("Photos and videos", value: "\(photos.items.count)")
+            }
+            Section {
+                Text("Everything is stored in Orbit's own folder on this Mac and never in the Mac's Notes, Calendar, Music or Photos apps.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .formStyle(.grouped)
     }
 }
